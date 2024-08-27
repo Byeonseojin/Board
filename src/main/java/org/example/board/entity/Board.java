@@ -1,9 +1,6 @@
 package org.example.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -11,8 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
-public class Board extends BaseEntity{
+@ToString(exclude = "writer")
+public class Board extends BaseEntity {
 
     @Id //기본키(primary key) 설정
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 1씩 자동증가(auto-increment)
@@ -20,4 +17,7 @@ public class Board extends BaseEntity{
 
     private String title;
     private String content;
+
+    @ManyToOne
+    private Member writer; //Foreign key 설정(참조무결성 유지)
 }
