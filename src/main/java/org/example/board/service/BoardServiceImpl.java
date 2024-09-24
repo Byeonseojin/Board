@@ -54,4 +54,13 @@ public class BoardServiceImpl implements BoardService{
         //원글 삭제
         repository.deleteById(bno);
     }
+    @Transactional
+    @Override
+    public void modify(BoardDTO boardDTO) {
+        Board board = repository.getReferenceById(boardDTO.getBno());
+        board.changetitle(board.getTitle());
+        board.changeContent(board.getContent());
+
+        repository.save(board);
+    }
 }
