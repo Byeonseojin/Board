@@ -30,7 +30,7 @@ public class ReplyServiceImpl implements ReplyService{
 
     @Override
     public void remove(Long rno) {
-        replyRepository.deleteByBno(rno);
+        replyRepository.deleteById(rno);
     }
 
     @Override
